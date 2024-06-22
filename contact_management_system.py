@@ -1,6 +1,6 @@
 import re
 
-def add_contact(contacts): # "Working" Needs tweaking ((Works technically)printing issue)
+def add_contact(contacts): # Works great - too much research was needed
     contact_name = input("Please enter new contact name: ")
     contact_phone_number = input("Please enter contact's phone number with dashes: ")
     contact_email = input("Please enter the contact's email address: ")
@@ -9,6 +9,7 @@ def add_contact(contacts): # "Working" Needs tweaking ((Works technically)printi
             contact["Phone Number"] == contact_phone_number and
             contact["E-Mail Address"] == contact_email):
             print("Contact with the same name, phone number, and email already exists! ")
+            return
     new_contact = {
         "Name": contact_name,
         "Phone Number": contact_phone_number,
@@ -17,14 +18,28 @@ def add_contact(contacts): # "Working" Needs tweaking ((Works technically)printi
     contacts[contact_name] = new_contact
     print(f"Contact {contact_name} was added successfully")
 
-def edit_contact(contacts): # "Working" Needs tweaking (Keeps the old phone number)
+def edit_contact(contacts): #Works great - pain in my ass
     contact_name = input("Whose contact info would you like to change? ")
-    if contact_name in contacts:
-        contact_phone_number = input("Please enter the new phone number: ")
-        contacts[contact_name]["Phone Number: "] = contact_phone_number
-        print(f"Phone number has been updated to {contact_phone_number}. ")
+    try:
+        if contact_name in contacts:
+            new_phone_number = input("Please enter the new phone number: ")
+            contacts[contact_name]["Phone Number"] = new_phone_number
+            print(f"Phone number for {contact_name} has been updated to {new_phone_number}.")
+        else:
+            print(f"Contact '{contact_name}' not found.")
+    except Exception as e:
+        print(f"Error occurred: {e}")
+    try:
+        if contact_name in contacts:
+            new_contact_email = input("Please enter the new email address: ")
+            contacts[contact_name]["E-Mail Address"] = new_contact_email
+            print(f"E-Mail Address for {contact_name} has been updated to {new_contact_email}.")
+        else:
+            print(f"Contact '{contact_name}' not found.")
+    except Exception as e:
+        print(f"Error occurred: {e}")
    
-def delete_contact(contacts): #Works Great
+def delete_contact(contacts): # Works Great somehow
     contact_name = input("Who's contact info would you like to remove? ")
     if contact_name in contacts:
         contacts.pop(contact_name)
@@ -45,20 +60,15 @@ def display_contacts(contacts):# Works Great
             print(f" - {key}: {value}")
         print()
     
-def export_contact(contacts): # Works perfect somehow
+def export_contact(contacts): # Works great somehow
     file = open("new_contact_info_dict.txt", "w+")
     with open("new_contact_info_dict.txt", "w") as file:
         for contact_name, new_contact in contacts.items():
             file.write(f"{contact_name}: {new_contact}\n")
     print("Contacts have been exported, changes have been saved! ")
         
-def import_contact(contacts): # Doesn't Work
+def import_contact(contacts): # Doesn't work, solution is not imminent 
     pass
-    # with open("old_contact_info.txt", "r") as file:
-    #     for line in file:
-    #         contact_name, new_contact = line.strip().split(": ")
-    #         contacts[contact_name] = new_contact
-    # print("Contacts have been imported? Restore Success?")
 
 contacts = {}
 
