@@ -1,0 +1,3 @@
+John Doe: {'Name': 'John Doe', 'Phone Number': '150-555-7234', 'E-Mail Address': 'jdoe@gmail.com'}
+Ryan Gosling: {'Name': 'Ryan Gosling', 'Phone Number': '150-555-0235', 'E-Mail Address': 'rgosling@gmail.com'}
+Emily Stone: {'Name': 'Emily Stone', 'Phone Number': '150-555-9345', 'E-Mail Address': 'estone@gmail.com'}
